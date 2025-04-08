@@ -1,5 +1,11 @@
 import "tfconfig/v2" as tfconfig
+import "tfplan/v2" as tfplan
 import "wo-schema-data" as rd
+import "strings"
+
+VERSION = strings.split(tfplan.terraform_version, ".")
+MAJOR = VERSION[0]
+MINOR = VERSION[1]
 
 resources_with_wo_available = filter tfconfig.resources as _, rc {
     rc.type in keys(rd) and
@@ -13,7 +19,8 @@ if length(resources_with_wo_available) != 0 {
 }
 
 rule_against_resources_with_wo_not_set = rule {
-    length(resources_with_wo_available) == 0
+    length(resources_with_wo_available) == 0 or 
+    (MAJOR == "1" and MINOR <= "10")
 }
 
 main = rule {

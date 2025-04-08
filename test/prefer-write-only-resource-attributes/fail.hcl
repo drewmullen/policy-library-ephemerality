@@ -9,6 +9,13 @@ mock "tfconfig/v2" {
     }
 }
 
+mock "tfplan/v2" {
+    module {
+        source = "./testdata/tfplan-above.sentinel"
+    }
+}
+
+
 test {
     rules  = {
         main = false

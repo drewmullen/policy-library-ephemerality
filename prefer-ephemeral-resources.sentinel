@@ -1,6 +1,11 @@
 import "tfconfig/v2" as tfconfig
+import "tfplan/v2" as tfplan
 import "strings"
 import "ephemeral-schema-data" as rd
+
+VERSION = strings.split(tfplan.terraform_version, ".")
+MAJOR = VERSION[0]
+MINOR = VERSION[1]
 
 secret_bearing_datasources = filter tfconfig.resources as _, rc {
     rc.type in rd.ephemeral and rc.mode == "data"
@@ -12,7 +17,8 @@ if length(secret_bearing_datasources) != 0 {
 }
 
 rule_against_secret_bearing_datasources = rule {
-    length(secret_bearing_datasources) == 0
+    length(secret_bearing_datasources) == 0 or 
+    (MAJOR == "1" and MINOR <= "10")
 }
 
 main = rule {
