@@ -1,4 +1,4 @@
-# Sentinel Policy checks for Emphemerality
+# Sentinel policy checks for Emphemerality
 
 This repo is a policy-as-code library for checking to see if your Terraform config contains resources or data sources that store secret values in state. In order to avoid secrets in state these policies prefer [ephemerality](https://www.hashicorp.com/en/blog/ephemeral-values-in-terraform); that is [Ephemeral resources](https://developer.hashicorp.com/terraform/language/resources/ephemeral) and [write-only parameters](https://developer.hashicorp.com/terraform/language/resources/ephemeral/write-only).
 
