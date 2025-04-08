@@ -1,6 +1,33 @@
-# Sentinel Policy Set for Emphemerality
+# Sentinel Policy checks for Emphemerality
 
 This repo is a policy-as-code library for checking to see if your Terraform config contains resources or data sources that store secret values in state. In order to avoid secrets in state these policies prefer [ephemerality](https://www.hashicorp.com/en/blog/ephemeral-values-in-terraform); that is [Ephemeral resources](https://developer.hashicorp.com/terraform/language/resources/ephemeral) and [write-only parameters](https://developer.hashicorp.com/terraform/language/resources/ephemeral/write-only).
+
+## How can I use this?
+
+Great question! Although there are many ways to set sentinel policies to your HCP TF Org, heres what I would do:
+1. create a new repo for policies at an enforcement level (suggested: `policies-soft-mandatory`)
+2. go to the latest version of the [public policy version](https://registry.terraform.io/policies/drewmullen/ephemerality/0.0.2)
+3. go to the "usage instructions" section, click both policies, copy the code
+4. add the code to your repo and push
+5. create a policy set in your TFC org using the `tfe_` provider
+
+Example of using tfe provider:
+```hcl
+resource "tfe_policy_set" "ephemerality" {
+  agent_enabled       = true
+  global              = true
+  kind                = "sentinel"
+  name                = "ephemerality"
+  organization        = <your org>
+  overridable         = true
+  policy_tool_version = "latest"
+  vcs_repo {
+    github_app_installation_id = "ghain-<your github app id>"
+    identifier                 = "<your gh org>/<your gh policy repo name>"
+    ingress_submodules         = false
+  }
+}
+```
 
 ## Which resources / data sources are checked?
 
