@@ -15,8 +15,8 @@ With write-only capable resources we do something similar except we search for r
 ## Updating the list of ephemeral resources
 
 If there are ephemeral resources that are not included in this data set (yet) it is likely for 1 of 2 reasons:
-1. We are not referencing a provider you wish (see here)
-1. We have not run the generator to grab the latest provider schema (see here)
+1. We are not referencing a provider you wish (see [here](https://github.com/drewmullen/policy-library-tfe-terraform/blob/main/generators/ephemeral_resources/providers.tf))
+1. We have not run the generator to grab the latest provider schema (see [here](https://github.com/drewmullen/policy-library-tfe-terraform/tree/main/data))
 
 
 ## Other ideas we've considered but would like feedback on

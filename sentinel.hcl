@@ -14,5 +14,10 @@ import "module" "common-functions" {
 
 policy "prefer-ephemeral-resources" {
     source = "./prefer-ephemeral-resources.sentinel"
-    enforcement_level = "advisory"
+    enforcement_level = "soft-mandatory"
+}
+
+policy "prefer-write-only-resource-attributes" {
+    source = "./prefer-write-only-resource-attributes.sentinel"
+    enforcement_level = "soft-mandatory"
 }
