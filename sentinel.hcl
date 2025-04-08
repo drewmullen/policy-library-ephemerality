@@ -1,5 +1,10 @@
-import "static" "remote-data" {
+import "static" "ephemeral-schema-data" {
     source = "https://raw.githubusercontent.com/drewmullen/policy-library-tfe-terraform/refs/heads/main/data/schema_ephemerals.json"
+    format = "json"
+}
+
+import "static" "wo-schema-data" {
+    source = "https://raw.githubusercontent.com/drewmullen/policy-library-tfe-terraform/refs/heads/main/data/write_only.json"
     format = "json"
 }
 

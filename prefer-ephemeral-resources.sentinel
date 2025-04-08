@@ -1,9 +1,9 @@
 import "tfconfig/v2" as tfconfig
 import "strings"
-import "remote-data" as rd
+import "ephemeral-schema-data" as rd
 import "common-functions" as common_functions
 
-print(remote_data.ids)
+print(rd)
 
 common_functions.formatted_print()
 

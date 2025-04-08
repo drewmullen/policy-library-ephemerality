@@ -1,0 +1,22 @@
+import "tfconfig/v2" as tfconfig
+import "wo-schema-data" as rd
+import "common-functions" as common_functions
+
+resources_with_wo_available = filter tfconfig.resources as _, rc {
+    rc.type in keys(rd) and
+    // the value from the rd entry is not in the resource config
+    rd[rc.type] not in keys(rc.config) 
+}
+
+if length(resources_with_wo_available) != 0 {
+    print()
+    print("Resources that have a write-only attribute option are preferred.")
+}
+
+rule_against_resources_with_wo_not_set = rule {
+    length(resources_with_wo_available) == 0
+}
+
+main = rule {
+    rule_against_resources_with_wo_not_set
+}

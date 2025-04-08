@@ -1,0 +1,42 @@
+import "strings"
+
+providers = {
+	"aws": {
+		"alias":               "",
+		"config":              {},
+		"full_name":           "registry.terraform.io/hashicorp/aws",
+		"module_address":      "",
+		"name":                "aws",
+		"provider_config_key": "aws",
+		"version_constraint":  "",
+	},
+}
+
+resources = {
+	"aws_ssm_parameter.test": {
+		"address": "aws_ssm_parameter.test",
+		"config": {
+			"name": {
+				"constant_value": "test",
+			},
+			"type": {
+				"constant_value": "String",
+			},
+			"value_wo": {
+				"constant_value": "test",
+			},
+			"value_wo_version": {
+				"constant_value": 1,
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "test",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_ssm_parameter",
+	},
+}
