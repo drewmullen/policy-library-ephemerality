@@ -1,0 +1,22 @@
+import "static" "wo-schema-data" {
+    source = "https://raw.githubusercontent.com/drewmullen/policy-library-tfe-terraform/refs/heads/main/data/write_only.json"
+    format = "json"
+}
+
+mock "tfconfig/v2" {
+    module {
+        source = "./testdata/tfconfig-success.sentinel"
+    }
+}
+
+mock "tfplan/v2" {
+    module {
+        source = "./testdata/tfplan-low.sentinel"
+    }
+}
+
+test {
+    rules  = {
+        main = true
+    }
+}
