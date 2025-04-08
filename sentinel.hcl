@@ -8,10 +8,6 @@ import "static" "wo-schema-data" {
     format = "json"
 }
 
-import "module" "common-functions" {
-    source = "https://raw.githubusercontent.com/jweigand/remote-sentinel-source/refs/heads/main/modules/common-functions.sentinel"
-}
-
 policy "prefer-ephemeral-resources" {
     source = "./prefer-ephemeral-resources.sentinel"
     enforcement_level = "soft-mandatory"

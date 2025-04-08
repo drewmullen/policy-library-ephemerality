@@ -1,11 +1,6 @@
 import "tfconfig/v2" as tfconfig
 import "strings"
 import "ephemeral-schema-data" as rd
-import "common-functions" as common_functions
-
-print(rd)
-
-common_functions.formatted_print()
 
 secret_bearing_datasources = filter tfconfig.resources as _, rc {
     rc.type in rd.ephemeral and rc.mode == "data"

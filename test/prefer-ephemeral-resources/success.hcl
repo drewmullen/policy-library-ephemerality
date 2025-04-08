@@ -3,10 +3,6 @@ import "static" "ephemeral-schema-data" {
     format = "json"
 }
 
-import "module" "common-functions" {
-    source = "https://raw.githubusercontent.com/jweigand/remote-sentinel-source/refs/heads/main/modules/common-functions.sentinel"
-}
-
 mock "tfconfig/v2" {
     module {
         source = "./testdata/tfconfig-success.sentinel"

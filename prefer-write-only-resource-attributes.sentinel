@@ -1,6 +1,5 @@
 import "tfconfig/v2" as tfconfig
 import "wo-schema-data" as rd
-import "common-functions" as common_functions
 
 resources_with_wo_available = filter tfconfig.resources as _, rc {
     rc.type in keys(rd) and
