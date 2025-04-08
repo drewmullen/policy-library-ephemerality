@@ -1,0 +1,25 @@
+import "tfconfig/v2" as tfconfig
+import "strings"
+import "remote-data" as rd
+import "common-functions" as common_functions
+
+print(remote_data.ids)
+
+common_functions.formatted_print()
+
+secret_bearing_datasources = filter tfconfig.resources as _, rc {
+    rc.type in rd.ephemeral and rc.mode == "data"
+}
+
+if length(secret_bearing_datasources) != 0 {
+    print()
+    print("Data sources that store secret values in state are blocked.")
+}
+
+rule_against_secret_bearing_datasources = rule {
+    length(secret_bearing_datasources) == 0
+}
+
+main = rule {
+    rule_against_secret_bearing_datasources
+}

@@ -1,0 +1,21 @@
+import "strings"
+
+resources = {
+	"data.aws_ssm_parameter.tfc": {
+		"address": "data.aws_ssm_parameter.tfc",
+		"config": {
+			"path": {
+				"constant_value": "terraform/creds/tfc-mgmt",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "data",
+		"module_address":      "",
+		"name":                "tfc",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "aws_ssm_parameter",
+	},
+}

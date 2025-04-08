@@ -1,0 +1,21 @@
+import "strings"
+
+resources = {
+	"data.something_else_entirely.tfc": {
+		"address": "data.something_else_entirely.tfc",
+		"config": {
+			"path": {
+				"constant_value": "terraform/creds/tfc-mgmt",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "",
+		"module_address":      "",
+		"name":                "tfc",
+		"provider_config_key": "vault",
+		"provisioners":        [],
+		"type":                "something_else_entirely",
+	},
+}
