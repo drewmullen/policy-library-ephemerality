@@ -2,6 +2,8 @@
 
 This repo is a policy-as-code library for checking to see if your Terraform config contains resources or data sources that store secret values in state. In order to avoid secrets in state these policies prefer [ephemerality](https://www.hashicorp.com/en/blog/ephemeral-values-in-terraform); that is [Ephemeral resources](https://developer.hashicorp.com/terraform/language/resources/ephemeral) and [write-only parameters](https://developer.hashicorp.com/terraform/language/resources/ephemeral/write-only).
 
+Please note that if `terraform_version` is less than 1.11 the checks will pass
+
 ## How can I use this?
 
 Great question! Although there are many ways to set sentinel policies to your HCP TF Org, heres what I would do:
@@ -37,7 +39,7 @@ The logic in these policies are quite simple. We generate and reference a list e
 
 The generated list is dumped to a json payload which the policy itself downloads from the public internet per run. This allows us to maintain the list in a public GitHub repo (and update it periodically) without requiring users to update their policy.
 
-With write-only capable resources we do something similar except we search for resource schemas that have an attribute that does not start with `has_` but ends with `_wo` and we form another json payload thats used to compare.
+With write-only capable resources we do something similar except we search for resource schemas that have an attribute that does not start with `has_` but ends with `_wo` and we form another json payload thats used to compare. We do assume that any `wo` attributes occur at the root of the schema, if there is ever a resource with a write-only attribute nested deeper than the schema root, we will have to adjust - as of today, im not aware of any.
 
 ## Updating the list of ephemeral resources
 
