@@ -4,7 +4,7 @@ This repo is a policy-as-code library for checking to see if your Terraform conf
 
 Please note that if `terraform_version` is less than 1.11 the checks will pass
 
-## How can I use this?
+## TL;DR How can I use this?
 
 Great question! Although there are many ways to set sentinel policies to your HCP TF Org, heres what I would do:
 1. create a new repo for policies at an enforcement level (suggested: `policies-soft-mandatory`)
@@ -33,22 +33,25 @@ resource "tfe_policy_set" "ephemerality" {
 
 ## Which resources / data sources are checked?
 
-Ephemerality in Terraform is a relatively new feature. As such, not all providers support this functionality yet and coverage across any given provider may be incomplete. 
+Ephemerality in Terraform is a relatively new feature. As such, not all providers support this functionality yet and coverage across any given provider is still growing and evolving.
 
-The logic in these policies are quite simple. We generate and reference a list ephemeral resources from several popular tf providers, we then assume the names of the ephemeral resources correspond to a data source, and ensure those data sources arent utilized in a given Terraform config. 
+In order to check the relevent terraform resources we have both lists of generated (scraped) resources and also a manual list resource check. Most of the data/resources that we want to scan for can be easily [generated](https://github.com/drewmullen/policy-library-ephemerality/blob/main/generators/ephemeral_resources/README.md?plain=1#L7) from any providers schema. However, there are some [circumstances](https://github.com/drewmullen/policy-library-ephemerality/issues/3) where we cannot generate a list of resources that we want to scan for.
 
-The generated list is dumped to a json payload which the policy itself downloads from the public internet per run. This allows us to maintain the list in a public GitHub repo (and update it periodically) without requiring users to update their policy.
+For each policy the list of resources to check are fetched from this git repo. Override params are available in some cirucmstances.
 
-With write-only capable resources we do something similar except we search for resource schemas that have an attribute that does not start with `has_` but ends with `_wo` and we form another json payload thats used to compare. We do assume that any `wo` attributes occur at the root of the schema, if there is ever a resource with a write-only attribute nested deeper than the schema root, we will have to adjust - as of today, im not aware of any.
+### Policies
+
+Regarding resource generators, more info can be found [here](https://github.com/drewmullen/policy-library-ephemerality/tree/main/generators/ephemeral_resources)
+
+- **ephemerals-retrieves**: This is a list of any `ephemeral` resource schemas presented by a provider. We scan several providers for any listed ephemeral resources, drop the json payload in [data](https://github.com/drewmullen/policy-library-ephemerality/tree/main/data). This list is then compared to **data sources** in a terraform config. 
+- **write-only**: This is a map of resources in various providers that have a `_wo` attributes (that doesnt begin with `has_`). The name of the resource is the key in the map and the value is the full name of the `_wo` parameter. Note that we **only scan the root of the resource schemas**. At the time of writing this there is no examples where wo attributes are deeper nested than the root.
+- **ephemeral-creates**: This is a manually generated list of resources that have a corresponding ephemeral resource but it is designed to replace a resource (not a data source). Please open PRs, to update this list. There is an override param `filtered_resources` if you need to immediately update your policy. More details can be found [here](https://github.com/drewmullen/policy-library-ephemerality/issues/3).
+
 
 ## Updating the list of ephemeral resources
+
+Soon™ the generators will be updated to run daily. Since the resources are remotely retrieved, this repos commitment is to _never_ remove a entry from a list once we release 1.0.
 
 If there are ephemeral resources that are not included in this data set (yet) it is likely for 1 of 2 reasons:
 1. We are not referencing a provider you wish (see [here](https://github.com/drewmullen/policy-library-tfe-terraform/blob/main/generators/ephemeral_resources/providers.tf))
 1. We have not run the generator to grab the latest provider schema (see [here](https://github.com/drewmullen/policy-library-tfe-terraform/tree/main/data))
-
-
-## Other ideas we've considered but would like feedback on
-
-1. Is there a use case here to accept a parameter to define this set of resources to check?
-1. Is there a use case to accept an optional parameter to append to the list of ephemeral resources checked?
