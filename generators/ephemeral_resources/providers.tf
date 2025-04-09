@@ -1,5 +1,6 @@
 terraform {
   required_providers {
+    # Please add new providers to this list as desired
     aws = {
       source  = "hashicorp/aws"
     }
