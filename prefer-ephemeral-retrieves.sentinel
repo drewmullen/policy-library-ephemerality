@@ -17,10 +17,10 @@ if length(secret_bearing_datasources) != 0 {
 }
 
 rule_against_secret_bearing_datasources = rule {
-    length(secret_bearing_datasources) == 0 or 
-    (MAJOR == "1" and MINOR <= "10")
+    length(secret_bearing_datasources) == 0
 }
 
 main = rule {
-    rule_against_secret_bearing_datasources
+    rule_against_secret_bearing_datasources or
+    (MAJOR == "1" and MINOR <= "10")
 }

@@ -1,10 +1,15 @@
 import "static" "ephemeral-schema-data" {
-    source = "https://raw.githubusercontent.com/drewmullen/policy-library-tfe-terraform/refs/heads/main/data/schema_ephemerals.json"
+    source = "https://raw.githubusercontent.com/drewmullen/policy-library-tfe-terraform/refs/heads/main/data/ephemeral/gen_schema_ephemerals.json"
+    format = "json"
+}
+
+import "static" "manual-resource-data" {
+    source = "./data/ephemeral/manual_resources.json"
     format = "json"
 }
 
 import "static" "wo-schema-data" {
-    source = "https://raw.githubusercontent.com/drewmullen/policy-library-tfe-terraform/refs/heads/main/data/write_only.json"
+    source = "https://raw.githubusercontent.com/drewmullen/policy-library-tfe-terraform/refs/heads/main/data/gen_write_only.json"
     format = "json"
 }
 
