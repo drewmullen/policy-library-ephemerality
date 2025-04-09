@@ -9,12 +9,12 @@ import "static" "manual-resource-data" {
 }
 
 import "static" "wo-schema-data" {
-    source = "https://raw.githubusercontent.com/drewmullen/policy-library-tfe-terraform/refs/heads/main/data/gen_write_only.json"
+    source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/write-only/gen_write_only.json"
     format = "json"
 }
 
-policy "prefer-ephemeral-resources" {
-    source = "./prefer-ephemeral-resources.sentinel"
+policy "prefer-ephemeral-retrieves" {
+    source = "./prefer-ephemeral-retrieves.sentinel"
     enforcement_level = "soft-mandatory"
 }
 
