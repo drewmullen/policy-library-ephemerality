@@ -1,0 +1,32 @@
+import "tfconfig/v2" as tfconfig
+import "tfplan/v2" as tfplan
+import "strings"
+import "manual-resource-data" as rd
+
+param filtered_resources default []
+
+if length(filtered_resources) == 0 {
+    filtered_resources = rd.resources
+}
+
+VERSION = strings.split(tfplan.terraform_version, ".")
+MAJOR = VERSION[0]
+MINOR = VERSION[1]
+
+secret_bearing_resources = filter tfconfig.resources as _, rc {
+    rc.type in filtered_resources
+}
+
+if length(secret_bearing_resources) != 0 {
+    print()
+    print("Data sources that store secret values in state are blocked.")
+}
+
+rule_against_secret_bearing_resources = rule {
+    length(secret_bearing_resources) == 0 
+}
+
+main = rule {
+    rule_against_secret_bearing_resources or
+    (MAJOR == "1" and MINOR <= "10")
+}

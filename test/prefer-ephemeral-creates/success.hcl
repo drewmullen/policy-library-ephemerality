@@ -1,5 +1,5 @@
-import "static" "wo-schema-data" {
-    source = "https://raw.githubusercontent.com/drewmullen/policy-library-tfe-terraform/refs/heads/main/data/gen_write_only.json"
+import "static" "manual-resource-data" {
+    source = "../../data/ephemeral/manual_resources.json"
     format = "json"
 }
 

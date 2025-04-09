@@ -1,0 +1,21 @@
+import "strings"
+
+resources = {
+	"tls_private_key.tfc": {
+		"address": "tls_private_key.tfc",
+		"config": {
+			"path": {
+				"constant_value": "terraform/creds/tfc-mgmt",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "data",
+		"module_address":      "",
+		"name":                "tfc",
+		"provider_config_key": "aws",
+		"provisioners":        [],
+		"type":                "tls_private_key",
+	},
+}

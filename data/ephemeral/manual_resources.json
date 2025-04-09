@@ -1,5 +1,6 @@
 {
     "resources": [
-        "tls_private_key"
+        "tls_private_key",
+        "random_password"
     ]
 }
