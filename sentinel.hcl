@@ -18,6 +18,11 @@ policy "prefer-ephemeral-retrieves" {
     enforcement_level = "soft-mandatory"
 }
 
+policy "prefer-ephemeral-creates" {
+    source = "./prefer-ephemeral-creates.sentinel"
+    enforcement_level = "soft-mandatory"
+}
+
 policy "prefer-write-only-resource-attributes" {
     source = "./prefer-write-only-resource-attributes.sentinel"
     enforcement_level = "soft-mandatory"
