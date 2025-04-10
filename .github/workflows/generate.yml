@@ -1,0 +1,33 @@
+name: Generate
+
+on:
+  schedule:
+    # Trigger the workflow every day at 4:00 UTC.
+    - cron: '0 4 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  ephemeral-resources:
+    name: Ephemeral Resources
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+      - name: Generate List of Provider Ephemeral Resources
+        run: |
+          # Create and checkout a new branch for this work.
+          branch_name=generate-ephemeral-resources-${{ github.run_id }}
+          git branch "${branch_name}" && git push -u origin "${branch_name}" && git checkout "${branch_name}";
+          # Generate list of ephemeral resources.
+          terraform init
+          terraform providers schema -json | jq '{"ephemeral": [.provider_schemas | to_entries[] | .value.ephemeral_resource_schemas? | select(.) | keys[] ]}' > ../../data/ephemeral/gen_schema_ephemerals.json
+          # Generate list for write-only resources.
+          terraform providers schema -json | jq '.provider_schemas | to_entries | map(.value.resource_schemas | to_entries | map(select(.value.block.attributes != null)) | map(select(.value.block.attributes | keys[] | test("^(?!has_).*_wo$"))) | map({key: .key, value: (.value.block.attributes | keys[] | select(test("^(?!has_).*_wo$")))})) | flatten | map({key: .key, value: .value}) | from_entries' > ../../data/gen_write_only.json
+          # TODO: Compare current branch and check if anything has been deleted.
+          # TODO: Compare current branch and check if anything has been added.
+          # git add .; git commit -m 'update list of ephemeral resources'; git push
+          # Create a pull request with the changes (if necessary).
+          # gh pr create -B main -H "${branch_name}" --title 'Merge "${branch_name}" into main' --body 'Created by Github action'
+
