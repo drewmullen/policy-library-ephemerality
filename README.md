@@ -6,6 +6,8 @@ Please note that if `terraform_version` is less than 1.11 the checks will pass
 
 During execution this policy downloads a list resources from the same repo ([here](https://github.com/drewmullen/policy-library-ephemerality/tree/main/data)). The goal is to keep this list as up to date as possible by using daily CI runs to check for new ephemeral or resources with write-only fields. As a rule, this repo will never remove a resource from the generated list and will only add new. If you would like to keep the lists static, please fork this repo and update the [import statements](https://github.com/drewmullen/policy-library-ephemerality/blob/main/sentinel.hcl#L2,L12) to your preferred location (perhaps your fork). 
 
+For more details on how these lists are generated see [below](https://github.com/drewmullen/policy-library-ephemerality/blob/main/README.md#which-resources--data-sources-are-checked).
+
 ## TL;DR How can I use this?
 
 Great question! Although there are many ways to set sentinel policies to your HCP TF Org, heres what I would do:
