@@ -21,13 +21,34 @@ jobs:
           branch_name=generate-ephemeral-resources-${{ github.run_id }}
           git branch "${branch_name}" && git push -u origin "${branch_name}" && git checkout "${branch_name}";
           # Generate list of ephemeral resources.
+          cd generators/ephemeral_resources
           terraform init
           terraform providers schema -json | jq '{"ephemeral": [.provider_schemas | to_entries[] | .value.ephemeral_resource_schemas? | select(.) | keys[] ]}' > ../../data/ephemeral/gen_schema_ephemerals.json
           # Generate list for write-only resources.
           terraform providers schema -json | jq '.provider_schemas | to_entries | map(.value.resource_schemas | to_entries | map(select(.value.block.attributes != null)) | map(select(.value.block.attributes | keys[] | test("^(?!has_).*_wo$"))) | map({key: .key, value: (.value.block.attributes | keys[] | select(test("^(?!has_).*_wo$")))})) | flatten | map({key: .key, value: .value}) | from_entries' > ../../data/gen_write_only.json
-          # TODO: Compare current branch and check if anything has been deleted.
-          # TODO: Compare current branch and check if anything has been added.
-          # git add .; git commit -m 'update list of ephemeral resources'; git push
+          // 0 = no change, 1 = only addition, 2 = deletions included
+          CHANGE=$(if [[ -z $(git status -s) ]]; then echo 0; elif [[ -z $(git status -s | grep "^[DR]") ]]; then echo 1; else echo 2; fi)
+          
+          case $CHANGE in
+            0)
+              echo "no changes"
+              exit 0
+              ;; 
+            1)
+              echo "new resources added, commiting, and opening a pr"
+              ;;
+            2)
+              echo "deletions detected, opening a pr but not merging till reviewed"
+              ;;
+            *) 
+              echo "Error: unexpected status code: $CHANGE"
+              exit 2
+              ;;
+          esac
+          
+          git add ./data/ephemeral; git commit -m 'robot: update list of ephemeral resources'; git push
+
+
           # Create a pull request with the changes (if necessary).
-          # gh pr create -B main -H "${branch_name}" --title 'Merge "${branch_name}" into main' --body 'Created by Github action'
+          gh pr create -B main -H "${branch_name}" --title 'Merge "${branch_name}" into main' --body 'Created by Github action'
 
