@@ -25,8 +25,8 @@ jobs:
           git branch "${branch_name}" && git push -u origin "${branch_name}" && git checkout "${branch_name}";
           # Generate list of ephemeral resources.
           cd generators/ephemeral_resources
-          apt update
-          apt install terraform gh
+          sudo apt update
+          sudo apt install terraform gh
           terraform init
           terraform providers schema -json | jq '{"ephemeral": [.provider_schemas | to_entries[] | .value.ephemeral_resource_schemas? | select(.) | keys[] ]}' > ../../data/ephemeral/gen_schema_ephemerals.json
           # Generate list for write-only resources.
