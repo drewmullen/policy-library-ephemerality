@@ -26,7 +26,11 @@ jobs:
           # Generate list of ephemeral resources.
           cd generators/ephemeral_resources
           sudo apt update
-          sudo apt install terraform gh
+          sudo apt-get install -y gnupg software-properties-common
+          wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
+          gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
+          sudo apt update
+          sudo apt install terraform gh jq
           terraform init
           terraform providers schema -json | jq '{"ephemeral": [.provider_schemas | to_entries[] | .value.ephemeral_resource_schemas? | select(.) | keys[] ]}' > ../../data/ephemeral/gen_schema_ephemerals.json
           # Generate list for write-only resources.
