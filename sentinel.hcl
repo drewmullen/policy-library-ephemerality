@@ -4,7 +4,7 @@ import "static" "ephemeral-schema-data" {
 }
 
 import "static" "manual-resource-data" {
-    source = "./data/ephemeral/manual_resources.json"
+    source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/ephemeral/manual_resources.json"
     format = "json"
 }
 
