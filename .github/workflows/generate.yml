@@ -1,13 +1,13 @@
 name: Generate
 
 on:
-  push:
-    branches:
-      - main
-  #schedule:
-    # Trigger the workflow every day at 4:00 UTC.
-  #  - cron: '0 4 * * *'
-
+  schedule:
+     # Trigger the workflow every day at 4:00 UTC.
+     - cron: '0 4 * * *'
+  #push:
+  #  branches:
+  #    - main
+  
 permissions:
   contents: write
   pull-requests: write
