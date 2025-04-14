@@ -60,6 +60,7 @@ jobs:
           esac
 
           echo "git add, commit, push"
+          cd ../..
           git add ./data/ephemeral; git commit -m 'robot: update list of ephemeral resources'; git push
 
 
