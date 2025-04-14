@@ -66,7 +66,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git status
-          git add ./data/ephemeral; git commit -m 'robot: update list of ephemeral resources'; git push
+          git add ./data/; git commit -m 'robot: update list of ephemeral resources'; git push
 
           # Create a pull request with the changes (if necessary).
           echo "gh cli to create pr"
