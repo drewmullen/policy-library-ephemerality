@@ -34,10 +34,10 @@ jobs:
           sudo apt install terraform gh jq
           terraform init
           echo "Generating ephemeral resources from providers..."
-          terraform providers schema -json | jq '{"ephemeral": [.provider_schemas | to_entries[] | .value.ephemeral_resource_schemas? | select(.) | keys[] ]}' > ../../data/ephemeral/gen_schema_ephemerals.json
+          terraform providers schema -json | jq '{"ephemeral": [.provider_schemas | to_entries[] | .value.ephemeral_resource_schemas? | select(.) | keys[] ]}' > ../../../data/ephemeral/gen_schema_ephemerals.json
           # Generate list for write-only resources.
           echo "Generating write-only resources from providers..."
-          terraform providers schema -json | jq '.provider_schemas | to_entries | map(.value.resource_schemas | to_entries | map(select(.value.block.attributes != null)) | map(select(.value.block.attributes | keys[] | test("^(?!has_).*_wo$"))) | map({key: .key, value: (.value.block.attributes | keys[] | select(test("^(?!has_).*_wo$")))})) | flatten | map({key: .key, value: .value}) | from_entries' > ../../data/gen_write_only.json
+          terraform providers schema -json | jq '.provider_schemas | to_entries | map(.value.resource_schemas | to_entries | map(select(.value.block.attributes != null)) | map(select(.value.block.attributes | keys[] | test("^(?!has_).*_wo$"))) | map({key: .key, value: (.value.block.attributes | keys[] | select(test("^(?!has_).*_wo$")))})) | flatten | map({key: .key, value: .value}) | from_entries' > ../../../data/gen_write_only.json
           # 0 = no change, 1 = only addition, 2 = deletions included
           CHANGE=$(if [[ -z $(git status -s) ]]; then echo 0; elif [[ -z $(git status -s | grep "^[DR]") ]]; then echo 1; else echo 2; fi)
           echo "Detected change code: $CHANGE"
