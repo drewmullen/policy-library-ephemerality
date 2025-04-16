@@ -23,7 +23,7 @@ rule_against_resources_with_wo_not_set = rule {
 	(MAJOR >= "1" and MINOR <= "10")
 }
 
-// There is a new write only attribute available, please use that instead
+// A new write only attribute available for managed resources used, please use those instead
 main = rule {
 	rule_against_resources_with_wo_not_set
 }
