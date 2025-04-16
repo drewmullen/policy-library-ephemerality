@@ -8,19 +8,20 @@ MAJOR = VERSION[0]
 MINOR = VERSION[1]
 
 secret_bearing_datasources = filter tfconfig.resources as _, rc {
-    rc.type in rd.ephemeral and rc.mode == "data"
+	rc.type in rd.ephemeral and rc.mode == "data"
 }
 
 if length(secret_bearing_datasources) != 0 {
-    print()
-    print("Data sources that store secret values in state are blocked.")
+	print()
+	print("Details: Data sources that store secret values in state are blocked.")
 }
 
 rule_against_secret_bearing_datasources = rule {
-    length(secret_bearing_datasources) == 0
+	length(secret_bearing_datasources) == 0
 }
 
+// Please avoid using the data sources that store secret values in state, use ephemeral values instead
 main = rule {
-    rule_against_secret_bearing_datasources or
-    (MAJOR == "1" and MINOR <= "10")
+	rule_against_secret_bearing_datasources or
+	(MAJOR >= "1" and MINOR <= "10")
 }
