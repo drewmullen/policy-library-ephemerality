@@ -19,7 +19,7 @@ secret_bearing_resources = filter tfconfig.resources as _, rc {
 
 if length(secret_bearing_resources) != 0 {
 	print()
-	print("Details: Data sources that store secret values in state are blocked.")
+	print("Details: Resources that store secret values in state are blocked.")
 }
 
 rule_against_secret_bearing_resources = rule {
