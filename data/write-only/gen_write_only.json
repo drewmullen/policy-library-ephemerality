@@ -13,5 +13,13 @@
   "azurerm_postgresql_flexible_server": "administrator_password_wo",
   "azurerm_postgresql_server": "administrator_login_password_wo",
   "google_secret_manager_secret_version": "secret_data_wo",
-  "google_sql_user": "password_wo"
+  "google_sql_user": "password_wo",
+  "tfe_notification_configuration": "token_wo",
+  "tfe_organization_run_task": "hmac_key_wo",
+  "tfe_policy_set_parameter": "value_wo",
+  "tfe_saml_settings": "private_key_wo",
+  "tfe_ssh_key": "key_wo",
+  "tfe_team_notification_configuration": "token_wo",
+  "tfe_test_variable": "value_wo",
+  "tfe_variable": "value_wo"
 }

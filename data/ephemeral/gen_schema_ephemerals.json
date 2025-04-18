@@ -13,6 +13,11 @@
     "google_service_account_id_token",
     "google_service_account_jwt",
     "google_service_account_key",
-    "random_password"
+    "random_password",
+    "tfe_agent_token",
+    "tfe_audit_trail_token",
+    "tfe_organization_token",
+    "tfe_outputs",
+    "tfe_team_token"
   ]
 }
