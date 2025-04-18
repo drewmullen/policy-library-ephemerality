@@ -4,10 +4,12 @@ on:
   schedule:
      # Trigger the workflow every day at 4:00 UTC.
      - cron: '0 4 * * *'
-  #push:
-  #  branches:
-  #    - main
-  
+  push:
+    branches:
+      - main
+    paths:  
+      - "generators/ephemeral_resources/providers.tf"
+    
 permissions:
   contents: write
   pull-requests: write
