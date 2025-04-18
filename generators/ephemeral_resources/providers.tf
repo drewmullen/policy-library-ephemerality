@@ -7,6 +7,9 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
     }
+    tfe = {
+      source  = "hashicorp/tfe"
+    }
     tls = {
       source  = "hashicorp/tls"
     }
