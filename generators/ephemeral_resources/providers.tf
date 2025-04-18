@@ -4,8 +4,14 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
     }
+    azuread = {
+      source  = "hashicorp/azuread"
+    }
     azurerm = {
       source  = "hashicorp/azurerm"
+    }
+    google = {
+      source  = "hashicorp/google"
     }
     tfe = {
       source  = "hashicorp/tfe"
@@ -15,12 +21,6 @@ terraform {
     }
     random = {
       source  = "hashicorp/random"
-    }
-    google = {
-      source  = "hashicorp/google"
-    }
-    azuread = {
-      source  = "hashicorp/azuread"
     }
   }
 }
