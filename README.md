@@ -2,7 +2,7 @@
 
 This repo is a policy-as-code library for checking to see if your Terraform config contains resources or data sources that store secret values in state. It is designed to work with any and all providers at the same time. In order to avoid secrets in state these policies prefer [ephemerality](https://www.hashicorp.com/en/blog/ephemeral-values-in-terraform); that is [Ephemeral resources](https://developer.hashicorp.com/terraform/language/resources/ephemeral) and [write-only parameters](https://developer.hashicorp.com/terraform/language/resources/ephemeral/write-only).
 
-__Note that if `terraform_version` is less than 1.11 the checks will pass.__
+__Note that if the `terraform_version` detected in config is less than 1.11 the checks will pass. This is because 1.11 is when write-only was added to terraform binary, thus no checks should be performed on earlier versions.__
 
 During execution this policy downloads a list resources from the same repo ([here](https://github.com/drewmullen/policy-library-ephemerality/tree/main/data)). The goal is to keep this list as up to date as possible by using daily CI runs to check for new ephemeral or resources with write-only fields ([example](https://github.com/drewmullen/policy-library-ephemerality/pull/8)). As a rule, this repo will never remove a resource from the generated list and will only add new. If you would like to keep the lists static, please fork this repo and update the [import statements](https://github.com/drewmullen/policy-library-ephemerality/blob/main/sentinel.hcl#L2,L12) to your preferred location (perhaps your fork). 
 
