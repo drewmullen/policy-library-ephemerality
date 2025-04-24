@@ -18,6 +18,7 @@
     "tfe_audit_trail_token",
     "tfe_organization_token",
     "tfe_outputs",
-    "tfe_team_token"
+    "tfe_team_token",
+    "tls_private_key"
   ]
 }
