@@ -21,5 +21,7 @@
   "tfe_ssh_key": "key_wo",
   "tfe_team_notification_configuration": "token_wo",
   "tfe_test_variable": "value_wo",
-  "tfe_variable": "value_wo"
+  "tfe_variable": "value_wo",
+  "vault_gcp_secret_backend": "credentials_wo",
+  "vault_kv_secret_v2": "data_json_wo"
 }

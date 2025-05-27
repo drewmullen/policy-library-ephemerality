@@ -19,6 +19,8 @@
     "tfe_organization_token",
     "tfe_outputs",
     "tfe_team_token",
-    "tls_private_key"
+    "tls_private_key",
+    "vault_database_secret",
+    "vault_kv_secret_v2"
   ]
 }
