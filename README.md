@@ -6,6 +6,14 @@ __Note that if the `terraform_version` detected in config is less than 1.11 the 
 
 During execution this policy downloads a list resources from the same repo ([here](https://github.com/drewmullen/policy-library-ephemerality/tree/main/data)). The goal is to keep this list as up to date as possible by using daily CI runs to check for new ephemeral or resources with write-only fields ([example](https://github.com/drewmullen/policy-library-ephemerality/pull/8)). As a rule, this repo will never remove a resource from the generated list and will only add new. If you would like to keep the lists static, please fork this repo and update the [import statements](https://github.com/drewmullen/policy-library-ephemerality/blob/main/sentinel.hcl#L2,L12) to your preferred location (perhaps your fork). 
 
+## Policy Documentation
+
+Detailed documentation for each policy is available in the [docs/policies](docs/policies) directory:
+
+- [Prefer Ephemeral Resources for Creation](docs/policies/prefer-ephemeral-creates.md)
+- [Prefer Ephemeral Resources for Data Retrieval](docs/policies/prefer-ephemeral-retrieves.md)
+- [Prefer Write-Only Resource Attributes](docs/policies/prefer-write-only-resource-attributes.md)
+
 For more details on how these lists are generated see [below](https://github.com/drewmullen/policy-library-ephemerality/blob/main/README.md#which-resources--data-sources-are-checked).
 
 ## TL;DR How can I use this?
