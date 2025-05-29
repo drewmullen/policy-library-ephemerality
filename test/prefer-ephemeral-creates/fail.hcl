@@ -1,5 +1,5 @@
-import "static" "manual-resource-data" {
-    source = "../../data/ephemeral/manual_resources.json"
+import "static" "ephemeral-data" {
+    source = "../../data/combined.json"
     format = "json"
 }
 
