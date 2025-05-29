@@ -1,15 +1,20 @@
-import "static" "ephemeral-schema-data" {
-    source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/ephemeral/gen_schema_ephemerals.json"
-    format = "json"
-}
+# import "static" "ephemeral-schema-data" {
+#     source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/ephemeral/gen_schema_ephemerals.json"
+#     format = "json"
+# }
 
-import "static" "manual-resource-data" {
-    source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/ephemeral/manual_resources.json"
-    format = "json"
-}
+# import "static" "manual-resource-data" {
+#     source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/ephemeral/manual_resources.json"
+#     format = "json"
+# }
 
-import "static" "wo-schema-data" {
-    source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/write-only/gen_write_only.json"
+# import "static" "wo-schema-data" {
+#     source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/write-only/gen_write_only.json"
+#     format = "json"
+# }
+
+import "static" "ephemeral-data" {
+    source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/combined.json"
     format = "json"
 }
 
