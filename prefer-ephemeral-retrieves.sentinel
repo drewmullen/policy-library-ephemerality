@@ -1,7 +1,7 @@
 import "tfconfig/v2" as tfconfig
 import "tfplan/v2" as tfplan
 import "strings"
-import "ephemeral-schema-data" as rd
+import "ephemeral-data" as rd
 
 VERSION = strings.split(tfplan.terraform_version, ".")
 MAJOR = VERSION[0]

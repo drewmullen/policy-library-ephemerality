@@ -1,5 +1,5 @@
-import "static" "ephemeral-schema-data" {
-    source = "https://raw.githubusercontent.com/drewmullen/policy-library-tfe-terraform/refs/heads/main/data/ephemeral/gen_schema_ephemerals.json"
+import "static" "ephemeral-data" {
+    source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/combined.json"
     format = "json"
 }
 

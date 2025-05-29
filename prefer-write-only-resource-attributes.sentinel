@@ -1,6 +1,6 @@
 import "tfconfig/v2" as tfconfig
 import "tfplan/v2" as tfplan
-import "wo-schema-data" as rd
+import "ephemeral-data" as rd
 import "strings"
 
 VERSION = strings.split(tfplan.terraform_version, ".")
@@ -8,9 +8,9 @@ MAJOR = VERSION[0]
 MINOR = VERSION[1]
 
 resources_with_wo_available = filter tfconfig.resources as _, rc {
-	rc.type in keys(rd) and
+	rc.type in keys(rd.write_only) and
 		// the value from the rd entry is not in the resource config
-		rd[rc.type] not in keys(rc.config)
+		rd.write_only[rc.type] not in keys(rc.config)
 }
 
 if length(resources_with_wo_available) != 0 {
