@@ -1,7 +1,7 @@
 import "tfconfig/v2" as tfconfig
 import "tfplan/v2" as tfplan
 import "strings"
-import "manual-resource-data" as rd
+import "ephemeral-data" as rd
 
 param filtered_resources default []
 

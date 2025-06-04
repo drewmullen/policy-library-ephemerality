@@ -1,5 +1,5 @@
-import "static" "wo-schema-data" {
-    source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/write-only/gen_write_only.json"
+import "static" "ephemeral-data" {
+    source = "https://raw.githubusercontent.com/drewmullen/policy-library-ephemerality/refs/heads/main/data/ephemerality.json"
     format = "json"
 }
 
