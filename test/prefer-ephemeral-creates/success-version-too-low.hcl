@@ -1,5 +1,5 @@
 import "static" "ephemeral-data" {
-    source = "../../data/combined.json"
+    source = "../../data/ephemerality.json"
     format = "json"
 }
 
