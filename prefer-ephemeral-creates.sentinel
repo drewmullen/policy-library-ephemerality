@@ -26,7 +26,7 @@ rule_against_secret_bearing_resources = rule {
 	length(secret_bearing_resources) == 0
 }
 
-// Please avoid using the data sources that store secret values in state, use ephemeral values instead
+// Please avoid using resources that store secret values in state, use ephemeral resources instead
 main = rule {
 	rule_against_secret_bearing_resources or
 	(MAJOR >= "1" and MINOR <= "10")

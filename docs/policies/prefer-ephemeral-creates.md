@@ -25,8 +25,8 @@ This policy is implemented in the [prefer-ephemeral-creates.sentinel](https://gi
   trace:
     prefer-ephemeral-creates.sentinel:30:1 - Rule "main"
       Description:
-        Please avoid using the data sources that store secret values in
-        state, use ephemeral values instead
+        Please avoid using resources that store secret values in
+        state, use ephemeral resources instead
 
       Value:
         true
@@ -42,8 +42,8 @@ This policy is implemented in the [prefer-ephemeral-creates.sentinel](https://gi
     trace:
       prefer-ephemeral-creates.sentinel:30:1 - Rule "main"
         Description:
-          Please avoid using the data sources that store secret values in
-          state, use ephemeral values instead
+          Please avoid using resources that store secret values in
+          state, use ephemeral resources instead
 
         Value:
           false
