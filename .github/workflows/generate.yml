@@ -1,6 +1,7 @@
 name: Generate
 
 on:
+  workflow_dispatch: 
   schedule:
      # Trigger the workflow every day at 4:00 UTC.
      - cron: '0 4 * * *'
