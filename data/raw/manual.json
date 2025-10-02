@@ -1,9 +1,6 @@
 {
     "resources": [
         "tfe_team_token",
-        "tfe_audit_trail_token",
-        "tfe_organization_token",
-        "tfe_agent_token",        
         "tls_private_key",
         "random_password"
     ]

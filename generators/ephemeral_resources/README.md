@@ -4,13 +4,41 @@ You can generate a list of ephemeral resources, as defined various providers.
 
 ```shell
 terraform init
-terraform providers schema -json | jq '{"ephemeral": [.provider_schemas | to_entries[] | .value.ephemeral_resource_schemas? | select(.) | keys[] ]}' > ../../data/ephemeral/gen_schema_ephemerals.json
+terraform providers schema -json | jq '
+{
+  "ephemeral": [
+    .provider_schemas | 
+    to_entries[] as $provider |
+    $provider.value.ephemeral_resource_schemas? |
+    select(.) |
+    to_entries[] |
+    select(
+      (.value.block.deprecated? != true) and
+      ((.value.block.description? // "" | test("deprecated|obsolete|removed"; "i")) | not)
+    ) |
+    .key
+  ]
+}' > ../../data/raw/ephemeral.json
 ```
 
 ## Generate list for write-only resources
 
 ```shell
-terraform providers schema -json | jq '.provider_schemas | to_entries | map(.value.resource_schemas | to_entries | map(select(.value.block.attributes != null)) | map(select(.value.block.attributes | keys[] | test("^(?!has_).*_wo$"))) | map({key: .key, value: (.value.block.attributes | keys[] | select(test("^(?!has_).*_wo$")))})) | flatten | map({key: .key, value: .value}) | from_entries' > ../../data/gen_write_only.json
+terraform providers schema -json | jq '
+  {
+    "write_only": (
+      .provider_schemas | to_entries | map(
+        .value.resource_schemas | to_entries | map(
+          select(.value.block.attributes != null) | 
+          select(.value.block.attributes | to_entries | map(.value) | any(.write_only == true))
+        ) | map({
+          key: .key,
+          value: (.value.block.attributes | to_entries | map(select(.value.write_only == true)) | map(.key)[])
+        })
+      ) | flatten | map({key: .key, value: .value}) | from_entries
+    )
+  }
+'  > ../../data/raw/write_only.json
 ```
 
 ## Add new providers

@@ -54,11 +54,32 @@ jobs:
               ) |
               .key
             ]
-          }' > ../../data/ephemeral/gen_schema_ephemerals.json
+          }' > ../../data/raw/ephemeral.json
           
           # Generate list for write-only resources.
           echo "Generating write-only resources from providers..."
-          terraform providers schema -json | jq '.provider_schemas | to_entries | map(.value.resource_schemas | to_entries | map(select(.value.block.attributes != null)) | map(select(.value.block.attributes | keys[] | test("^(?!has_).*_wo$"))) | map({key: .key, value: (.value.block.attributes | keys[] | select(test("^(?!has_).*_wo$")))})) | flatten | map({key: .key, value: .value}) | from_entries' > ../../data/write-only/gen_write_only.json
+          terraform providers schema -json | jq '
+            {
+              "write_only": (
+                .provider_schemas | to_entries | map(
+                  .value.resource_schemas | to_entries | map(
+                    select(.value.block.attributes != null) | 
+                    select(.value.block.attributes | to_entries | map(.value) | any(.write_only == true))
+                  ) | map({
+                    key: .key,
+                    value: (.value.block.attributes | to_entries | map(select(.value.write_only == true)) | map(.key)[])
+                  })
+                ) | flatten | map({key: .key, value: .value}) | from_entries
+              )
+            }
+          '  > ../../data/raw/write_only.json
+
+          # Combine files
+          echo "Combining ephemeral, write-only, and manual resources into one file..."
+          jq -s 'add' ../../data/raw/ephemeral.json \
+            ../../data/raw/write_only.json \
+            ../../data/raw/manual.json \
+              > ../../data/ephemerality.json
 
           # 0 = no change, 1 = only addition, 2 = deletions included
           CHANGE=$(if [[ -z $(git status -s) ]]; then echo 0; elif [[ -z $(git status -s | grep "^[DR]") ]]; then echo 1; else echo 2; fi)
