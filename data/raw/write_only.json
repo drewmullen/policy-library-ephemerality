@@ -7,6 +7,7 @@
     "aws_redshiftserverless_namespace": "admin_user_password_wo",
     "aws_secretsmanager_secret_version": "secret_string_wo",
     "aws_ssm_parameter": "value_wo",
+    "aws_transfer_host_key": "host_key_body_wo",
     "azurerm_key_vault_secret": "value_wo",
     "azurerm_mssql_job_credential": "password_wo",
     "azurerm_mssql_server": "administrator_login_password_wo",
