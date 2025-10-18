@@ -1,5 +1,6 @@
 {
   "write_only": {
+    "aws_bedrockagentcore_api_key_credential_provider": "api_key_wo",
     "aws_db_instance": "password_wo",
     "aws_docdb_cluster": "master_password_wo",
     "aws_rds_cluster": "master_password_wo",
