@@ -20,6 +20,7 @@
     "tfe_outputs",
     "tfe_team_token",
     "tls_private_key",
+    "vault_azure_static_credentials",
     "vault_database_secret",
     "vault_kv_secret_v2"
   ]
