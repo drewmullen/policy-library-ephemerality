@@ -1,6 +1,7 @@
 {
   "ephemeral": [
     "aws_cognito_identity_openid_token_for_developer_identity",
+    "aws_ecr_authorization_token",
     "aws_eks_cluster_auth",
     "aws_kms_secrets",
     "aws_lambda_invocation",
