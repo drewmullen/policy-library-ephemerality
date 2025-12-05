@@ -22,8 +22,13 @@
     "tfe_outputs",
     "tfe_team_token",
     "tls_private_key",
+    "vault_aws_access_credentials",
+    "vault_aws_static_access_credentials",
+    "vault_azure_access_credentials",
     "vault_azure_static_credentials",
     "vault_database_secret",
+    "vault_gcp_oauth2_access_token",
+    "vault_gcp_service_account_key",
     "vault_kv_secret_v2"
   ]
 }
