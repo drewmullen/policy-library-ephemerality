@@ -22,6 +22,7 @@
     "tfe_outputs",
     "tfe_team_token",
     "tls_private_key",
+    "tls_public_key",
     "vault_aws_access_credentials",
     "vault_aws_static_access_credentials",
     "vault_azure_access_credentials",
