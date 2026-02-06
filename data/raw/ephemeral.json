@@ -24,6 +24,7 @@
     "tfe_team_token",
     "tls_private_key",
     "tls_public_key",
+    "vault_approle_auth_backend_role_secret_id",
     "vault_aws_access_credentials",
     "vault_aws_static_access_credentials",
     "vault_azure_access_credentials",
@@ -31,6 +32,7 @@
     "vault_database_secret",
     "vault_gcp_oauth2_access_token",
     "vault_gcp_service_account_key",
+    "vault_kubernetes_service_account_token",
     "vault_kv_secret_v2"
   ]
 }
