@@ -9,6 +9,7 @@
     "aws_secretsmanager_random_password",
     "aws_secretsmanager_secret_version",
     "aws_ssm_parameter",
+    "aws_sts_web_identity_token",
     "azurerm_key_vault_certificate",
     "azurerm_key_vault_secret",
     "google_client_config",
