@@ -38,6 +38,7 @@
     "vault_aws_secret_backend": "secret_key_wo",
     "vault_azure_auth_backend_config": "client_secret_wo",
     "vault_azure_secret_backend": "client_secret_wo",
+    "vault_cf_auth_backend_config": "cf_password_wo",
     "vault_consul_secret_backend": "token_wo",
     "vault_database_secret_backend_static_role": "password_wo",
     "vault_gcp_auth_backend": "credentials_wo",
@@ -50,7 +51,12 @@
     "vault_ldap_secret_backend": "bindpass_wo",
     "vault_mongodbatlas_secret_backend": "private_key_wo",
     "vault_nomad_secret_backend": "token_wo",
+    "vault_okta_auth_backend": "api_token_wo",
+    "vault_pki_secret_backend_acme_account": "eab_kid",
     "vault_rabbitmq_secret_backend": "password_wo",
+    "vault_secrets_sync_aws_destination": "identity_token_key_wo",
+    "vault_secrets_sync_azure_destination": "identity_token_key_wo",
+    "vault_secrets_sync_gcp_destination": "identity_token_key_wo",
     "vault_spiffe_auth_backend_config": "defer_bundle_fetch",
     "vault_terraform_cloud_secret_backend": "token_wo"
   }

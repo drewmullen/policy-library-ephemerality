@@ -30,10 +30,14 @@
     "vault_aws_static_access_credentials",
     "vault_azure_access_credentials",
     "vault_azure_static_credentials",
+    "vault_cf_auth_login",
     "vault_database_secret",
     "vault_gcp_oauth2_access_token",
     "vault_gcp_service_account_key",
+    "vault_generic_secret",
     "vault_kubernetes_service_account_token",
-    "vault_kv_secret_v2"
+    "vault_kv_secret_v2",
+    "vault_spiffe_secret_backend_mintjwt",
+    "vault_terraform_token"
   ]
 }
