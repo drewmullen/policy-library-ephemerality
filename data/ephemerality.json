@@ -30,11 +30,15 @@
     "vault_aws_static_access_credentials",
     "vault_azure_access_credentials",
     "vault_azure_static_credentials",
+    "vault_cf_auth_login",
     "vault_database_secret",
     "vault_gcp_oauth2_access_token",
     "vault_gcp_service_account_key",
+    "vault_generic_secret",
     "vault_kubernetes_service_account_token",
-    "vault_kv_secret_v2"
+    "vault_kv_secret_v2",
+    "vault_spiffe_secret_backend_mintjwt",
+    "vault_terraform_token"
   ],
   "write_only": {
     "aws_bedrockagentcore_api_key_credential_provider": "api_key_wo",
@@ -75,6 +79,7 @@
     "vault_aws_secret_backend": "secret_key_wo",
     "vault_azure_auth_backend_config": "client_secret_wo",
     "vault_azure_secret_backend": "client_secret_wo",
+    "vault_cf_auth_backend_config": "cf_password_wo",
     "vault_consul_secret_backend": "token_wo",
     "vault_database_secret_backend_static_role": "password_wo",
     "vault_gcp_auth_backend": "credentials_wo",
@@ -87,7 +92,12 @@
     "vault_ldap_secret_backend": "bindpass_wo",
     "vault_mongodbatlas_secret_backend": "private_key_wo",
     "vault_nomad_secret_backend": "token_wo",
+    "vault_okta_auth_backend": "api_token_wo",
+    "vault_pki_secret_backend_acme_account": "eab_kid",
     "vault_rabbitmq_secret_backend": "password_wo",
+    "vault_secrets_sync_aws_destination": "identity_token_key_wo",
+    "vault_secrets_sync_azure_destination": "identity_token_key_wo",
+    "vault_secrets_sync_gcp_destination": "identity_token_key_wo",
     "vault_spiffe_auth_backend_config": "defer_bundle_fetch",
     "vault_terraform_cloud_secret_backend": "token_wo"
   },
