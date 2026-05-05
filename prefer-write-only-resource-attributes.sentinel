@@ -9,8 +9,8 @@ MINOR = VERSION[1]
 
 resources_with_wo_available = filter tfconfig.resources as _, rc {
 	rc.type in keys(rd.write_only) and
-		// the value from the rd entry is not in the resource config
-		rd.write_only[rc.type] not in keys(rc.config)
+		// none of the wo fields for this resource type are in the resource config
+		all rd.write_only[rc.type] as wo_field { wo_field not in keys(rc.config) }
 }
 
 if length(resources_with_wo_available) != 0 {

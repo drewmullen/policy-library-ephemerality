@@ -33,7 +33,7 @@ terraform providers schema -json | jq '
           select(.value.block.attributes | to_entries | map(.value) | any(.write_only == true))
         ) | map({
           key: .key,
-          value: (.value.block.attributes | to_entries | map(select(.value.write_only == true)) | map(.key)[])
+          value: (.value.block.attributes | to_entries | map(select(.value.write_only == true)) | map(.key))
         })
       ) | flatten | map({key: .key, value: .value}) | from_entries
     )
