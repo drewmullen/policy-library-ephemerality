@@ -1,0 +1,45 @@
+import "strings"
+
+providers = {
+	"tfe": {
+		"alias":               "",
+		"config":              {},
+		"full_name":           "registry.terraform.io/hashicorp/tfe",
+		"module_address":      "",
+		"name":                "tfe",
+		"provider_config_key": "tfe",
+		"version_constraint":  "",
+	},
+}
+
+resources = {
+	"tfe_notification_configuration.test": {
+		"address": "tfe_notification_configuration.test",
+		"config": {
+			"destination_type": {
+				"constant_value": "generic",
+			},
+			"name": {
+				"constant_value": "test",
+			},
+			"token": {
+				"constant_value": "super-secret-token",
+			},
+			"url": {
+				"constant_value": "https://example.com/webhook",
+			},
+			"workspace_id": {
+				"constant_value": "ws-abc123",
+			},
+		},
+		"count":               {},
+		"depends_on":          [],
+		"for_each":            {},
+		"mode":                "managed",
+		"module_address":      "",
+		"name":                "test",
+		"provider_config_key": "tfe",
+		"provisioners":        [],
+		"type":                "tfe_notification_configuration",
+	},
+}
