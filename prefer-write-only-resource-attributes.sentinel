@@ -2,6 +2,7 @@ import "tfconfig/v2" as tfconfig
 import "tfplan/v2" as tfplan
 import "ephemeral-data" as rd
 import "strings"
+import "report" as report
 
 VERSION = strings.split(tfplan.terraform_version, ".")
 MAJOR = VERSION[0]
@@ -13,10 +14,20 @@ resources_with_wo_available = filter tfconfig.resources as _, rc {
 		all rd.write_only[rc.type] as wo_field { wo_field not in keys(rc.config) }
 }
 
-if length(resources_with_wo_available) != 0 {
-	print()
-	print("Details: resources that have a write-only attribute option are preferred.")
+violations = map resources_with_wo_available as addr, rc {
+	{
+		"address":        addr,
+		"module_address": rc.module_address,
+		"message":        "write-only attribute(s) available but not configured (available: " + strings.join(rd.write_only[rc.type], ", ") + ")",
+	}
 }
+
+summary = {
+	"policy_name": "prefer-write-only-resource-attributes",
+	"violations":  violations,
+}
+
+print(report.generate_policy_report(summary))
 
 rule_against_resources_with_wo_not_set = rule {
 	length(resources_with_wo_available) == 0 or
