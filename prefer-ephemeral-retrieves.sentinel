@@ -2,6 +2,7 @@ import "tfconfig/v2" as tfconfig
 import "tfplan/v2" as tfplan
 import "strings"
 import "ephemeral-data" as rd
+import "report" as report
 
 VERSION = strings.split(tfplan.terraform_version, ".")
 MAJOR = VERSION[0]
@@ -11,10 +12,20 @@ secret_bearing_datasources = filter tfconfig.resources as _, rc {
 	rc.type in rd.ephemeral and rc.mode == "data"
 }
 
-if length(secret_bearing_datasources) != 0 {
-	print()
-	print("Details: Data sources that store secret values in state are blocked.")
+violations = map secret_bearing_datasources as addr, rc {
+	{
+		"address":        addr,
+		"module_address": rc.module_address,
+		"message":        "data source stores secret values in state; use an ephemeral resource instead",
+	}
 }
+
+summary = {
+	"policy_name": "prefer-ephemeral-retrieves",
+	"violations":  violations,
+}
+
+print(report.generate_policy_report(summary))
 
 rule_against_secret_bearing_datasources = rule {
 	length(secret_bearing_datasources) == 0

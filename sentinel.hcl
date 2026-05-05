@@ -3,6 +3,10 @@ import "static" "ephemeral-data" {
     format = "json"
 }
 
+import "module" "report" {
+    source = "./modules/report/report.sentinel"
+}
+
 policy "prefer-ephemeral-retrieves" {
     source = "./prefer-ephemeral-retrieves.sentinel"
     enforcement_level = "advisory"

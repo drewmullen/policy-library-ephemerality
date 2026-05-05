@@ -2,6 +2,7 @@ import "tfconfig/v2" as tfconfig
 import "tfplan/v2" as tfplan
 import "strings"
 import "ephemeral-data" as rd
+import "report" as report
 
 param filtered_resources default []
 
@@ -17,10 +18,20 @@ secret_bearing_resources = filter tfconfig.resources as _, rc {
 	rc.type in filtered_resources
 }
 
-if length(secret_bearing_resources) != 0 {
-	print()
-	print("Details: Resources that store secret values in state should use the write-only argument.")
+violations = map secret_bearing_resources as addr, rc {
+	{
+		"address":        addr,
+		"module_address": rc.module_address,
+		"message":        "resource stores secret values in state; use an ephemeral resource instead",
+	}
 }
+
+summary = {
+	"policy_name": "prefer-ephemeral-creates",
+	"violations":  violations,
+}
+
+print(report.generate_policy_report(summary))
 
 rule_against_secret_bearing_resources = rule {
 	length(secret_bearing_resources) == 0

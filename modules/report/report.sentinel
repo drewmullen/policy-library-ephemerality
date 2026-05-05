@@ -1,0 +1,74 @@
+// report module — generates structured policy output
+//
+// Usage:
+//   summary = {
+//     "policy_name": "my-policy",
+//     "violations": [
+//       {"address": "aws_s3_bucket.foo", "module_address": "", "message": "reason"},
+//     ],
+//   }
+//   print(generate_policy_report(summary))
+
+green  = "\033[32m"
+red    = "\033[31m"
+reset  = "\033[0m"
+
+arrow      = "→"
+down_arrow = "↳"
+check      = "✓"
+cross      = "✗"
+pipe       = "|"
+
+root_module = "root"
+
+generate_policy_report = func(summary) {
+	if length(summary.violations) == 0 {
+		return _success(summary.policy_name)
+	} else {
+		return _failure(summary)
+	}
+}
+
+_success = func(policy_name) {
+	r  = green + arrow + " " + arrow + " Overall Result: true" + reset + "\n"
+	r += "\n"
+	r += check + " All resources passed the policy check for " + policy_name + ".\n"
+	r += "\n"
+	r += check + " Found 0 resource violations"
+	return r
+}
+
+_failure = func(summary) {
+	r  = red + arrow + " " + arrow + " Overall Result: false" + reset + "\n"
+	r += "\n"
+	r += cross + " Not all resources passed the policy check for " + summary.policy_name + ".\n"
+	r += "\n"
+	r += "Found " + string(length(summary.violations)) + " resource violation(s):\n"
+
+	module_map = _group_by_module(summary.violations)
+	for keys(module_map) as mod {
+		r += "\n"
+		r += arrow + " Module: " + mod + "\n"
+		for module_map[mod] as v {
+			r += "  " + down_arrow + " Resource Address: " + v.address + "\n"
+			r += "    " + pipe + " " + cross + " failed\n"
+			r += "    " + pipe + " " + v.message + "\n"
+		}
+	}
+	return r
+}
+
+_group_by_module = func(violations) {
+	m = {}
+	for violations as v {
+		mod = v.module_address
+		if mod is "" {
+			mod = root_module
+		}
+		if mod not in keys(m) {
+			m[mod] = []
+		}
+		append(m[mod], v)
+	}
+	return m
+}

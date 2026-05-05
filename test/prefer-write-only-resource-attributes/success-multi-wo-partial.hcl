@@ -1,3 +1,7 @@
+import "module" "report" {
+    source = "../../modules/report/report.sentinel"
+}
+
 import "static" "ephemeral-data" {
     source = "../../data/ephemerality.json"
     format = "json"
