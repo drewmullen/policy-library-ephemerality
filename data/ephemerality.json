@@ -20,6 +20,7 @@
     "google_service_account_key",
     "kubernetes_certificate_signing_request_v1",
     "kubernetes_token_request_v1",
+    "random_bytes",
     "random_password",
     "tfe_outputs",
     "tfe_team_token",
