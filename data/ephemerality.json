@@ -44,6 +44,9 @@
     "vault_terraform_token"
   ],
   "write_only": {
+    "aws_acm_certificate": [
+      "private_key_wo"
+    ],
     "aws_bedrockagentcore_api_key_credential_provider": [
       "api_key_wo"
     ],
