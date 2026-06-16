@@ -127,6 +127,9 @@
       "binary_data_wo",
       "data_wo"
     ],
+    "tfe_admin_smtp_settings": [
+      "password_wo"
+    ],
     "tfe_notification_configuration": [
       "token_wo",
       "url_wo"
@@ -136,6 +139,12 @@
     ],
     "tfe_policy_set_parameter": [
       "value_wo"
+    ],
+    "tfe_project_notification_configuration": [
+      "token_wo"
+    ],
+    "tfe_provider_set": [
+      "provider_config_hcl_wo"
     ],
     "tfe_saml_settings": [
       "private_key_wo"
