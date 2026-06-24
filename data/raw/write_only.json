@@ -204,6 +204,12 @@
     "vault_rabbitmq_secret_backend": [
       "password_wo"
     ],
+    "vault_radius_auth_backend": [
+      "secret_wo"
+    ],
+    "vault_raft_snapshot_agent_config": [
+      "aws_secret_access_key_wo"
+    ],
     "vault_secrets_sync_aws_destination": [
       "identity_token_audience_wo",
       "identity_token_key_wo"
@@ -221,6 +227,10 @@
     ],
     "vault_terraform_cloud_secret_backend": [
       "token_wo"
+    ],
+    "vault_userpass_auth_backend_user": [
+      "password_hash_wo",
+      "password_wo"
     ]
   }
 }
