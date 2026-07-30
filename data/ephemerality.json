@@ -98,8 +98,9 @@
     "azurerm_postgresql_flexible_server": [
       "administrator_password_wo"
     ],
-    "azurerm_postgresql_server": [
-      "administrator_login_password_wo"
+    "azurerm_subnet": [
+      "network_security_group_id_wo",
+      "route_table_id_wo"
     ],
     "google_alloydb_user": [
       "password_wo"
