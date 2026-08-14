@@ -98,7 +98,8 @@
       "value_wo"
     ],
     "tfe_project_notification_configuration": [
-      "token_wo"
+      "token_wo",
+      "url_wo"
     ],
     "tfe_provider_set": [
       "provider_config_hcl_wo"
