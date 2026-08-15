@@ -98,7 +98,8 @@
       "value_wo"
     ],
     "tfe_project_notification_configuration": [
-      "token_wo"
+      "token_wo",
+      "url_wo"
     ],
     "tfe_provider_set": [
       "provider_config_hcl_wo"
@@ -155,8 +156,19 @@
     "vault_gcp_secret_backend": [
       "credentials_wo"
     ],
+    "vault_gcpkms_secret_backend": [
+      "credentials_wo"
+    ],
     "vault_jwt_auth_backend": [
       "oidc_client_secret_wo"
+    ],
+    "vault_kerberos_auth_backend_config": [
+      "keytab_wo"
+    ],
+    "vault_kerberos_auth_backend_ldap_config": [
+      "bindpass_wo",
+      "client_tls_cert_wo",
+      "client_tls_key_wo"
     ],
     "vault_keymgmt_aws_kms": [
       "credentials_wo"
