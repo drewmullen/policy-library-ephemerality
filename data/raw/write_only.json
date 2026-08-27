@@ -12,6 +12,9 @@
     "aws_docdb_cluster": [
       "master_password_wo"
     ],
+    "aws_elasticache_replication_group": [
+      "auth_token_wo"
+    ],
     "aws_elasticache_user": [
       "passwords_wo"
     ],
