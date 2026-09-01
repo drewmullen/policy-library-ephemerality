@@ -122,6 +122,15 @@
     "tfe_variable": [
       "value_wo"
     ],
+    "tls_cert_request": [
+      "private_key_pem_wo"
+    ],
+    "tls_locally_signed_cert": [
+      "ca_private_key_pem_wo"
+    ],
+    "tls_self_signed_cert": [
+      "private_key_pem_wo"
+    ],
     "vault_alicloud_secret_backend": [
       "secret_key_wo"
     ],
