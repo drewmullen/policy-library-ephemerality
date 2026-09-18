@@ -31,6 +31,7 @@
     "vault_aws_access_credentials",
     "vault_aws_static_access_credentials",
     "vault_azure_access_credentials",
+    "vault_azure_access_token",
     "vault_azure_static_credentials",
     "vault_cf_auth_login",
     "vault_database_secret",
@@ -204,6 +205,9 @@
     "vault_azure_secret_backend_static_role": [
       "client_secret"
     ],
+    "vault_cert_auth_backend_role": [
+      "certificate_wo"
+    ],
     "vault_cf_auth_backend_config": [
       "cf_password_wo"
     ],
@@ -277,6 +281,18 @@
     "vault_pki_external_ca_secret_backend_acme_account": [
       "eab_key",
       "eab_kid"
+    ],
+    "vault_pki_external_ca_secret_backend_dns_provider_aws_route53": [
+      "secret_access_key_wo"
+    ],
+    "vault_pki_external_ca_secret_backend_dns_provider_azure": [
+      "client_secret_wo"
+    ],
+    "vault_pki_external_ca_secret_backend_dns_provider_gcp": [
+      "credentials_wo"
+    ],
+    "vault_pki_external_ca_secret_backend_dns_provider_rfc2136": [
+      "tsig_secret_wo"
     ],
     "vault_rabbitmq_secret_backend": [
       "password_wo"
