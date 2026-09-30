@@ -123,6 +123,9 @@
     "google_compute_vpn_tunnel": [
       "shared_secret_wo"
     ],
+    "google_secret_manager_regional_secret_version": [
+      "secret_data_wo"
+    ],
     "google_secret_manager_secret_version": [
       "secret_data_wo"
     ],
