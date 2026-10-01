@@ -1,5 +1,6 @@
 {
   "ephemeral": [
+    "aws_bedrockruntime_apply_guardrail",
     "aws_cognito_identity_openid_token_for_developer_identity",
     "aws_ecr_authorization_token",
     "aws_ecrpublic_authorization_token",
