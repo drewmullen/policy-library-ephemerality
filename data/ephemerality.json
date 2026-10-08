@@ -75,6 +75,9 @@
     "aws_kms_ciphertext": [
       "plaintext_wo"
     ],
+    "aws_odb_autonomous_database": [
+      "admin_password_wo"
+    ],
     "aws_rds_cluster": [
       "master_password_wo"
     ],
