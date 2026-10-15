@@ -247,6 +247,10 @@
     "vault_pki_external_ca_secret_backend_dns_provider_rfc2136": [
       "tsig_secret_wo"
     ],
+    "vault_pki_secret_backend_wrapped_key_import": [
+      "export_key_hmac",
+      "wrapped_key"
+    ],
     "vault_rabbitmq_secret_backend": [
       "password_wo"
     ],
