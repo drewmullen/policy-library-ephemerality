@@ -47,6 +47,7 @@
     "vault_kerberos_auth_backend_login",
     "vault_kubernetes_service_account_token",
     "vault_kv_secret_v2",
+    "vault_pki_secret_backend_ca_key_export",
     "vault_radius_auth_login",
     "vault_spiffe_secret_backend_mintjwt",
     "vault_terraform_token",
