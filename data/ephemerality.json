@@ -67,6 +67,10 @@
     "aws_docdb_cluster": [
       "master_password_wo"
     ],
+    "aws_dx_macsec_key_association": [
+      "cak_wo",
+      "ckn_wo"
+    ],
     "aws_elasticache_replication_group": [
       "auth_token_wo"
     ],
