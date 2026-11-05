@@ -31,6 +31,9 @@
     "aws_rds_cluster": [
       "master_password_wo"
     ],
+    "aws_rds_tenant_database": [
+      "master_user_password_wo"
+    ],
     "aws_redshift_cluster": [
       "master_password_wo"
     ],
