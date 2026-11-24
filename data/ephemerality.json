@@ -104,6 +104,9 @@
     "aws_transfer_host_key": [
       "host_key_body_wo"
     ],
+    "azurerm_horizondb_cluster": [
+      "administrator_password_wo"
+    ],
     "azurerm_key_vault_secret": [
       "value_wo"
     ],
@@ -118,6 +121,9 @@
     ],
     "azurerm_postgresql_flexible_server": [
       "administrator_password_wo"
+    ],
+    "azurerm_search_service_datasource_blob": [
+      "connection_string_wo"
     ],
     "azurerm_subnet": [
       "network_security_group_id_wo",
