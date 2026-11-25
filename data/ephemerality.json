@@ -249,6 +249,7 @@
       "credentials_wo"
     ],
     "vault_jwt_auth_backend": [
+      "oidc_client_id_wo",
       "oidc_client_secret_wo"
     ],
     "vault_kerberos_auth_backend_config": [
@@ -345,6 +346,15 @@
     ],
     "vault_terraform_cloud_secret_backend": [
       "token_wo"
+    ],
+    "vault_transform_transformation_fpe_imported_key": [
+      "ciphertext_wo"
+    ],
+    "vault_transform_transformation_tokenization_imported_key": [
+      "ciphertext_wo"
+    ],
+    "vault_transit_secret_backend_imported_key": [
+      "ciphertext_wo"
     ],
     "vault_userpass_auth_backend_user": [
       "password_hash_wo",
